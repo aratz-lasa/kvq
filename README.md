@@ -1,6 +1,10 @@
 # kvq
 Key-value store with external queue
 
+# Installation
+```console
+go install ./...
+```
 # Server usage
 Run server:
 ```console
