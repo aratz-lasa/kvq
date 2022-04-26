@@ -62,8 +62,6 @@ func add() cli.ActionFunc {
 		io := &internal.RabbitIO{Conn: conn}
 		io.Send(queue, "", req, false)
 
-		logrus.Info(fmt.Sprintf("[queue %v] published ADD Key=%v, Value=%v", queue, key, value))
-
 		return nil
 	}
 }

@@ -3,7 +3,6 @@ package internal
 import (
 	"encoding/json"
 	"fmt"
-	"time"
 
 	"github.com/sirupsen/logrus"
 	"github.com/streadway/amqp"
@@ -86,7 +85,6 @@ func (w *Worker) handleMsg(msg amqp.Delivery) {
 func decodeRequest(msg amqp.Delivery) (Request, error) {
 	req := Request{}
 	err := json.Unmarshal(msg.Body, &req)
-	req.Kv.Value.Timestamp = time.Now().UnixMicro()
 	req.ReplyTo = msg.ReplyTo
 	return req, err
 }
