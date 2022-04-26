@@ -1,0 +1,6 @@
+{
+    "USER_QUEUES": ["A", "B", "C", "D"],
+    "WORKER_QUEUES": ["1", "2", "3", "4"],
+    "META_QUEUE": "META",
+    "RABBITMQ": "amqp://guest:guest@localhost:5672"
+}
