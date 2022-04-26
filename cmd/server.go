@@ -1,6 +1,9 @@
 package cmd
 
 import (
+	"fmt"
+	"time"
+
 	"github.com/aratz-lasa/kvq/internal"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli/v2"
@@ -21,7 +24,6 @@ var serverSubcommands = []*cli.Command{
 	Start(),
 	Scale(),
 }
-
 
 func Start() *cli.Command {
 	return &cli.Command{
@@ -84,16 +86,37 @@ func scale() cli.ActionFunc {
 		}
 		defer ch.Close()
 
+		metadata, err := getMetadata()
+		if err != nil {
+			return err
+		}
+		fmt.Printf("Current scale: %v\n", metadata.Scale)
+
 		req := internal.Request{
 			OP: internal.SCALE,
 		}
 
 		io := &internal.RabbitIO{Conn: conn}
-		for _, queue := range conf.USER_QUEUES {
+		for _, queue := range conf.WORKER_QUEUES {
 			if err := io.Send(queue, "", req, false); err != nil {
 				return err
 			}
 		}
+
+		fmt.Printf("Scaling to %v...\n", metadata.Scale*2)
+
+		for {
+			time.Sleep(time.Second)
+			newMetadata, err := getMetadata()
+			if err != nil {
+				return err
+			}
+			if newMetadata.Scale != metadata.Scale {
+				fmt.Printf("New scale: %v\n", newMetadata.Scale)
+				break
+			}
+		}
+
 		return nil
 	}
 }
