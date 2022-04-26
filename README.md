@@ -1,5 +1,5 @@
 # kvq
-Key-value store with external queue
+Key-value store that uses external queue for client-server communication
 
 # Installation
 ```console
