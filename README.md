@@ -3,7 +3,7 @@ Key-value store with external queue
 
 # Installation
 ```console
-go install ./...
+foo@bar:~$ go install ./...
 ```
 # Server usage
 Run server:
