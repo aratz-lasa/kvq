@@ -1,7 +1,11 @@
 # kvq
-Key-value store that uses external queue for client-server communication
+Key-value store that uses external RabbitMQ queue for client-server communication. It makes use of no lock for storing data, instead, it partitions the data in nodes. Nodes act as actors (for more information on what actor means go to [https://en.wikipedia.org/wiki/Actor_model](https://en.wikipedia.org/wiki/Actor_model)), responding to `add`, `get`, `getall`, and `del` requests.
 
 # Installation
+1. Install RabbitMQ as indicated in [https://www.rabbitmq.com/download.html](https://www.rabbitmq.com/download.html).
+
+2. Install the application:
+
 ```console
 foo@bar:~$ go install ./...
 ```
@@ -29,7 +33,7 @@ Get value from key:
 ```console
 foo@bar:~$ kvq client add hello world
 foo@bar:~$ kvq client get hello
-hello
+world
 ```
 
 Get all values:
