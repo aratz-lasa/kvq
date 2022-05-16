@@ -28,4 +28,4 @@ require (
 	github.com/wetware/ww v0.0.0-alpha.2
 )
 
-replace github.com/multiformats/go-varint => /home/bar/github.com/multiformats/go-varint
+replace github.com/multiformats/go-varint => /home/bar/github.com/multiformats/go-varin
