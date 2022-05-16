@@ -1,3 +1,5 @@
+name: go.mod replace directive
+on:
   push:
     branches: [ master ]
   pull_request:
