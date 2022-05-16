@@ -28,3 +28,4 @@ require (
 	github.com/wetware/ww v0.0.0-alpha.2
 )
 
+replace github.com/wetware/ww => /foo/bar/github.com/wetware/ww
