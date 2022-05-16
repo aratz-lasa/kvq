@@ -27,3 +27,5 @@ require (
 	github.com/tkanos/gonfig v0.0.0-20210106201359-53e13348de2f
 	github.com/wetware/ww v0.0.0-alpha.2
 )
+
+replace github.com/multiformats/go-varint => /home/bar/github.com/multiformats/go-varint
